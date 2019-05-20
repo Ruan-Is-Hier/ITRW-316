@@ -1,0 +1,138 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        string[] tlbArray = new string[3];
+        string[] physArray = new string[4];
+        string[] pgeTableArray = new string[10];
+
+        public Form1()
+        {
+            InitializeComponent();
+            Random rando = new Random();
+            int num1 = rando.Next(1, 11);
+            int num2 = rando.Next(1, 11);
+            int num3 = rando.Next(1, 11);
+
+            
+            tlbArray[0] = Convert.ToString(num1);
+            tlbArray[1] = Convert.ToString(num2);
+            tlbArray[2] = Convert.ToString(num3);
+
+
+            tlbTxt.Text = Convert.ToString(num1) + "\r\n" + Convert.ToString(num2) + "\r\n" + Convert.ToString(num3);
+
+            for (int i = 1; i < 11; i++)
+            {
+                pageTblTxt.Text += Convert.ToString(i) + "\r\n";
+                
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                pgeTableArray[i] = Convert.ToString(i+1);
+
+            }
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string add = textBox4.Text;
+            string mess = "This address is in the TLB\nIt will be loaded from the TLB";
+            bool asdf = true;
+
+       
+            
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (String.Equals(add, tlbArray[i]))
+                    {
+                        MessageBox.Show(mess, "Address found in TLB");
+                        physTxt.Text += tlbArray[i] + "\r\n";
+                    asdf = false;
+                        if (i == 0)
+                        {
+                            break;
+                        }
+                        else if (i == 1)
+                        {
+                            string num = tlbArray[0];
+                            tlbArray[0] = tlbArray[i];
+                            tlbArray[1] = num;
+                            tlbTxt.Text = tlbTxt.Text = tlbArray[0] + "\r\n" + tlbArray[1] + "\r\n" + tlbArray[2];
+                            break;
+                        }
+                        else if (i == 2)
+                        {
+                            string one = tlbArray[0];
+                            tlbArray[0] = tlbArray[i];
+                            string two = tlbArray[1];
+                            tlbArray[1] = one;
+                            tlbArray[2] = two;
+                            tlbTxt.Text = tlbTxt.Text = tlbArray[0] + "\r\n" + tlbArray[1] + "\r\n" + tlbArray[2];
+                            break;
+                        }
+
+                    }
+
+                }
+
+            if (asdf)
+            {
+                if (Convert.ToInt32(add) < 11 && Convert.ToInt32(add) > 0)
+                {
+                    physTxt.Text += add + "\r\n";
+
+
+                    string een = tlbArray[0];
+                    string twee = tlbArray[1];
+                    tlbArray[0] = add;
+                    tlbArray[1] = een;
+                    tlbArray[2] = twee;
+                    tlbTxt.Text = tlbArray[0] + "\r\n" + tlbArray[1] + "\r\n" + tlbArray[2] + "\r\n";
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Address", "Error");
+                }
+            }
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tlbTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

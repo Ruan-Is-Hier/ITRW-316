@@ -16,10 +16,11 @@ namespace WindowsFormsApp1
         int z=0;
         int[] priority = new int[20];
         int[] arr = new int[20];
-        int[] y = { 25, 75, 125, 175, 225};
+        int[] y = { 25, 75, 125, 175, 225, 275};
         int x = 5;
         int totalProcesses=0;
         int[] robinarr = new int[10];
+        int[] ax = { 5, 25, 45, 65, 85, 108, 125, 145, 165, 186, 205, 225, 245, 265, 285, 305, 325, 345, 365, 385, 405 };
 
         public Form1()
         {
@@ -86,19 +87,22 @@ namespace WindowsFormsApp1
 
             Graphics papier = pictureBox1.CreateGraphics();
             SolidBrush myBrush = new SolidBrush(Color.BlueViolet);
-            if (run==false)
+            
+            for (int i = 0; i <= totalProcesses; i++)
             {
-                Thread.Sleep(100000000);
-            }
-            for (int i = 1; i <= totalProcesses; i++)
-            {
+                int xi = x;
                 z++;
                 int yi = y[priority[i]];
                 for (int k = 1; k <= arr[priority[i]]; k++)
                 {
-                    papier.FillRectangle(myBrush, new Rectangle(x, yi, 15, 15));
-                    x = x + 20;
+                    papier.FillRectangle(myBrush, new Rectangle(xi, yi, 15, 15));
+                    xi = xi + 20;
                     Thread.Sleep(1200);
+
+                    if (run == false)
+                    {
+                        Thread.Sleep(100000000);
+                    }
                 }
             }
         }
@@ -130,13 +134,9 @@ namespace WindowsFormsApp1
             int times = 0;
             for (int l = 1; l <= 7; l++)
             {
-                for (int i = 1; i <= totalProcesses; i++)
+                for (int i = 0; i <= totalProcesses; i++)
                 {            
-                    x = 5;
-                    if (run == false)
-                    {
-                        Thread.Sleep(100000000);
-                    }
+                                       
                     t = robinarr[i];
                     if (t < arr[i])
                     {
@@ -144,17 +144,18 @@ namespace WindowsFormsApp1
                         {
                             times = 2;
                         }
-                        else
-                        {
-                            times = 1;
-                        }
+                       
                         for (int k = 1; k <= times; k++)
                         {
                             Graphics papier = pictureBox1.CreateGraphics();
                             SolidBrush myBrush = new SolidBrush(Color.Purple);
-                            papier.FillRectangle(myBrush, new Rectangle(x, y[i], 15, 15));
-                            x = x + 20;
-                            Thread.Sleep(1000);                          
+                            papier.FillRectangle(myBrush, new Rectangle(ax[i], y[i], 15, 15));
+                            Thread.Sleep(1000);
+
+                            if (run == false)
+                            {
+                                Thread.Sleep(100000000);
+                            }
                         }
                     }
                     t = t + 2;
@@ -172,12 +173,9 @@ namespace WindowsFormsApp1
                     int times = 0;
                     for (int l = 1; l <= 7; l++)
                     {
-                        for (int i = 1; i <= totalProcesses; i++)
+                        for (int i = 0; i <= totalProcesses; i++)
                         {
-                            if (run == false)
-                            {
-                                Thread.Sleep(1000000);
-                            }
+                            
                             int yi;
                             yi = y[priority[i]];
                             t = robinarr[i];
@@ -199,6 +197,11 @@ namespace WindowsFormsApp1
                                     x = x + 20;
                                     Thread.Sleep(1000);
                                     y[priority[i]] = yi;
+
+                                    if (run == false)
+                                    {
+                                        Thread.Sleep(1000000);
+                                    }
                                 }
                             }
                             t = t + 2;

@@ -132,7 +132,7 @@ namespace WindowsFormsApp1
         {
             int t = 2;
             int times = 0;
-            for (int l = 1; l <= 7; l++)
+            for (int l = 0; l <= 20; l++)
             {
                 for (int i = 0; i <= totalProcesses; i++)
                 {            
@@ -149,7 +149,7 @@ namespace WindowsFormsApp1
                         {
                             Graphics papier = pictureBox1.CreateGraphics();
                             SolidBrush myBrush = new SolidBrush(Color.Purple);
-                            papier.FillRectangle(myBrush, new Rectangle(ax[i], y[i], 15, 15));
+                            papier.FillRectangle(myBrush, new Rectangle(ax[l], y[i], 15, 15));
                             Thread.Sleep(1000);
 
                             if (run == false)
@@ -167,17 +167,15 @@ namespace WindowsFormsApp1
         public void MultipleQueues()
         {
             {
-                for (int a = 1; a <= 5; a++)
+                for (int a = 0; a <= 5; a++)
                 {
                     int t = 2;
                     int times = 0;
-                    for (int l = 1; l <= 7; l++)
+                    for (int l = 0; l <= 20; l++)
                     {
                         for (int i = 0; i <= totalProcesses; i++)
                         {
-                            
-                            int yi;
-                            yi = y[priority[i]];
+
                             t = robinarr[i];
                             if (t < arr[i])
                             {
@@ -185,18 +183,14 @@ namespace WindowsFormsApp1
                                 {
                                     times = 2;
                                 }
-                                else
-                                {
-                                    times = 1;
-                                }
-                                for (int k = 1; k <= times; k++)
+                   
+                                for (int k = 0; k <= times; k++)
                                 {
                                     Graphics papier = pictureBox1.CreateGraphics();
                                     SolidBrush myBrush = new SolidBrush(Color.Purple);
-                                    papier.FillRectangle(myBrush, new Rectangle(x, yi, 15, 15));
+                                    papier.FillRectangle(myBrush, new Rectangle(ax[l], y[priority[i]], 15, 15));
                                     x = x + 20;
                                     Thread.Sleep(1000);
-                                    y[priority[i]] = yi;
 
                                     if (run == false)
                                     {
@@ -206,7 +200,6 @@ namespace WindowsFormsApp1
                             }
                             t = t + 2;
                             robinarr[i] = t;
-                            x = x + 30;
                         }
                     }
                 }
